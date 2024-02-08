@@ -1,0 +1,76 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+.contact-main {
+    padding: 20px 0;
+    text-align: center;
+    font-family: var(--font-family);
+}
+.contact-head h3 {
+    padding: 10px;
+    font-size: 30px;
+    position: relative;
+}
+.contact-head h3::after {
+    content: '';
+    position: absolute;
+    background-color: var(--danger-color);
+    height: 2px;
+    width: 13%;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 0;
+}
+.contact-head p{
+    padding: 10px;
+}
+.contact-form{
+    padding: 30px 0;
+}
+.small-div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* border: 2px solid; */
+    padding: 10px;
+}
+.small-div:hover .icons svg{
+    background-color: brown;
+    color: antiquewhite;
+}
+.form-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+}
+.icons {
+    padding: 10px;
+    font-size: 40px;
+    color: var(--border-color);
+}
+.icons svg{
+    border-radius: 50%;
+    background-color:var(--first-color);
+    padding: 7px;
+    transition: all 0.3s ease-in-out;
+}
+.box-content {
+    text-align: left;
+    padding: 10px;
+}
+.box-content h4{
+    font-size: 18px;
+    font-weight: 600;
+}
+.box-content p{
+    font-size: 15px;
+    color: var(--border-color);
+    cursor: pointer;
+}
+.form-body{
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+    padding: 10px;
+}

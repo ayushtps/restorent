@@ -1,0 +1,135 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+ul {
+    list-style: none;
+}
+
+.main-dash {
+    display: flex;
+    position: relative;
+}
+
+.sidebar-section {
+    position: fixed;
+    width: 20%;
+    height: 100vh;
+    background: var(--first-color);
+    padding: 20px;
+}
+
+.logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.logo img {
+    display: inline-block;
+    height: 100px;
+    width: 100px;
+    border-radius: 50%;
+    border: 3px solid var(--border-color);
+}
+
+.menus div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    font-size: 35px;
+    border: 2px solid var(--border-color);
+    margin: 10px 0;
+    text-decoration: none;
+    color: black;
+    transition: all 0.3s ease-in-out;
+}
+
+.menus div:hover {
+    background-color: var(--border-color);
+    color: var(--first-color);
+}
+
+.active div {
+    background-color: var(--border-color);
+    color: var(--first-color);
+}
+
+.logout-btn {
+    padding: 10px;
+    font-size: 35px;
+    color: var(--border-color);
+}
+
+.header {
+    margin-left: auto;
+    width: 80%;
+    position: relative;
+}
+
+.header-inner {
+    position: fixed;
+    width: 80%;
+    background: var(--border-color);
+    height: 75px;
+    padding: 6px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 99;
+}
+
+.header-search input {
+    padding: 10px 20px;
+    font-size: 17px;
+    border-radius: 10px;
+    border: 2px solid var(--fisrt-color);
+    margin: 0 10px;
+}
+
+.header-search button {
+    padding: 5px;
+    border-radius: 5px;
+    background-color: var(--first-color);
+    color: black;
+    font-size: 19px;
+    border: 2px solid var(--first-color);
+}
+
+.header-btn button {
+    padding: 10px 20px;
+    border-radius: 5px;
+    border: 2px solid var(--first-color);
+    font-size: 16px;
+    text-transform: capitalize;
+    background-color: var(--first-color);
+    color: var(--border-color);
+}
+
+.content {
+    position: relative;
+    padding: 120px 60px 0 60px;
+}
+
+@media only screen and (max-width: 768px) {
+    .main-dash {
+        display: block;
+    }
+
+    .sidebar-section {
+        position: relative;
+        width: 100%;
+    }
+
+    .header {
+        margin: 0;
+    }
+
+    .header-inner {
+        width: 100%;
+        margin: 0;
+    }
+}

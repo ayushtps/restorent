@@ -17,7 +17,7 @@ function HomePage() {
         <div className="main-contain">
           <div className="left-contain">
             <div className="contain-food">
-              <h1>We Love <br />
+              <h1>We Love Food <br />
                 Delicious Foods!</h1>
             </div>
             <div className="food-btn">

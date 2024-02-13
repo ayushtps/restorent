@@ -1,0 +1,25 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+.table-contain{
+    width: 75%;
+    margin: 0 auto;
+}
+table,td,th{
+    border: 2px solid var(--border-color);
+    padding: 10px;
+}
+button{
+    padding: 10px 20px;
+    margin: 0 2px;
+    border: none;
+    font-weight: bold;
+}
+.edit{
+    background-color: green;
+}
+.delete{
+    background-color: red;
+}

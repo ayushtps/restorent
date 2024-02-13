@@ -7,10 +7,16 @@ import { MdOutlineTableRestaurant } from "react-icons/md";
 import { MdOutlineConnectWithoutContact } from "react-icons/md";
 import { IoSearchOutline } from "react-icons/io5";
 import { Container } from 'react-bootstrap';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
+import { FaRegUser } from "react-icons/fa";
 
 export const DashboardHOC = (Component) => {
   const NewComponent = () => {
+    const nvigate=useNavigate()
+    const logInOut = () =>{
+      sessionStorage.clear()
+      nvigate('/login')
+    }
     return <>
       <Container>
         <div>
@@ -25,7 +31,8 @@ export const DashboardHOC = (Component) => {
                 <NavLink to='/tablebooking'><div><MdOutlineTableRestaurant /></div></NavLink>
                 <NavLink to='/menus'><div><MdRestaurantMenu /></div></NavLink>
                 <NavLink to='/contact'><div><MdOutlineConnectWithoutContact /></div></NavLink>
-                <div>
+                <NavLink to='/user'><div><FaRegUser /></div></NavLink>
+                <div onClick={logInOut}>
                   <RiLogoutCircleRLine />
                 </div>
               </div>

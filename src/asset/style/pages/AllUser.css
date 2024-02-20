@@ -15,11 +15,16 @@ button{
     padding: 10px 20px;
     margin: 0 2px;
     border: none;
-    font-weight: bold;
+    font-weight: bold; 
+    border-radius: 10px;
 }
 .edit{
     background-color: green;
 }
 .delete{
     background-color: red;
+}
+.popup-container{
+    width: 50%;
+    border: 2px solid black;
 }

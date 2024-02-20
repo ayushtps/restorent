@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import '../asset/style/components/DashboardHOC.css';
 import { RiLogoutCircleRLine } from "react-icons/ri";
 import { IoHomeOutline } from "react-icons/io5";
@@ -9,13 +9,22 @@ import { IoSearchOutline } from "react-icons/io5";
 import { Container } from 'react-bootstrap';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { FaRegUser } from "react-icons/fa";
+import Notify from '../Notify';
+import { LoaderContext } from '../Context';
 
 export const DashboardHOC = (Component) => {
   const NewComponent = () => {
+
+    const { setloader } = useContext(LoaderContext)
+    console.log(setloader);
+
     const nvigate=useNavigate()
     const logInOut = () =>{
+      setloader(true)
+      Notify("warning", `You r LoginOut`)
       sessionStorage.clear()
       nvigate('/login')
+      setloader(false)
     }
     return <>
       <Container>

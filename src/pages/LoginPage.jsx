@@ -5,9 +5,15 @@ import { useNavigate } from 'react-router-dom'
 import Notify from '../Notify'
 import { useDispatch, useSelector } from 'react-redux'
 import { LoaderContext } from '../Context'
+import { LoginUser, RegisterUser } from '../redux/slice/LoginSlice'
 // import { LoginUser, RegisterUser } from '../redux/action/action'
 
 function LoginPage() {
+
+    const state = useSelector(state => state.login.data)
+    console.log(state);
+
+    const dispatch = useDispatch()
 
     const { setloader } = useContext(LoaderContext)
 
@@ -41,64 +47,82 @@ function LoginPage() {
     }
 
     const saveSession = (data) => {
+        console.log(data);
         navigate('/dashboard')
         sessionStorage.setItem('toke', data?.toke)
-        sessionStorage.setItem('username', data?.user?.firstName)
-        sessionStorage.setItem('userid', data.user?._id)
-        sessionStorage.setItem('useremail', data.user?.email)
+        // sessionStorage.setItem('username', data?.user?.firstName)
+        // sessionStorage.setItem('userid', data.user?._id)
+        // sessionStorage.setItem('useremail', data.user?.email)
+    }
+
+    const login = async () => {
+        setloader(true)
+        let result = await dispatch(LoginUser(registerForm))
+        if (result.type === 'login/fulfilled') {
+            saveSession(result.payload)
+            Notify("success", result.payload.message);
+        }
+        else {
+            Notify("error", result.error.message);
+        }
+        setloader(false)
+        document.querySelector('form').reset()
     }
 
     // const login = () => {
-    //     dispatch(LoginUser(registerForm))
-    //     // saveSession(state)
+    //     setloader(true)
+    //     axios({
+    //         method: 'post',
+    //         url: 'https://dashboard-api-one.vercel.app/api/v1/login',
+    //         data: {
+    //             email: registerForm.email,
+    //             password: registerForm.password
+    //         }
+    //     }).then((response) => {
+    //         saveSession(response.data);
+    //         Notify("success", `Welcome to Restro !`)
+    //     }).catch((error) => {
+    //         console.log(error);
+    //         Notify("error", `${error?.response?.data}`)
+    //     }).finally(()=>{
+    //         setloader(false)
+    //     })
     //     document.querySelector('form').reset()
     // }
 
-    const login = () => {
+    const registartion = async () => {
         setloader(true)
-        axios({
-            method: 'post',
-            url: 'https://dashboard-api-one.vercel.app/api/v1/login',
-            data: {
-                email: registerForm.email,
-                password: registerForm.password
-            }
-        }).then((response) => {
-            saveSession(response.data);
-            Notify("success", `Welcome to Restro !`)
-        }).catch((error) => {
-            console.log(error);
-            Notify("error", `${error?.response?.data}`)
-        }).finally(()=>{
-            setloader(false)
-        })
+        let result = await dispatch(RegisterUser(registerForm))
+        console.log(result);
+        if (result.type === 'register/fulfilled') {
+            saveSession(result.payload)
+            Notify("success", result.payload.message);
+        }
+        else {
+            Notify("error", result.error.message);
+        }
+        setloader(false)
+        setpage('login')
         document.querySelector('form').reset()
     }
 
     // const registartion = () => {
-    //     dispatch(RegisterUser(registerForm))
-    //     saveSession(state)
-    //     setpage('login')
+    //     setloader(true)
+    //     axios({
+    //         method: 'post',
+    //         url: 'https://dashboard-api-one.vercel.app/api/v1/register',
+    //         data: registerForm
+    //     }).then((response) => {
+    //         saveSession(response.data);
+    //         Notify("success", `Welcome to Restro ${registerForm.firstName} !`)
+    //         setpage('login')
+    //     }).catch((error) => {
+    //         Notify("error", `${error?.response?.data}`)
+    //     }).finally(() => {
+    //         setloader(false)
+    //     })
     //     document.querySelector('form').reset()
     // }
-
-    const registartion = () => {
-        setloader(true)
-        axios({
-            method: 'post',
-            url: 'https://dashboard-api-one.vercel.app/api/v1/register',
-            data: registerForm
-        }).then((response) => {
-            saveSession(response.data);
-            Notify("success", `Welcome to Restro ${registerForm.firstName} !`)
-            setpage('login')
-        }).catch((error) => {
-            Notify("error", `${error?.response?.data}`)
-        }).finally(()=>{
-            setloader(false)
-        })
-        document.querySelector('form').reset()
-    }
 
     const reset = () => {
 

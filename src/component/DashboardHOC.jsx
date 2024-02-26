@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import '../asset/style/components/DashboardHOC.css';
 import { RiLogoutCircleRLine } from "react-icons/ri";
 import { IoHomeOutline } from "react-icons/io5";
@@ -11,20 +11,38 @@ import { NavLink, useNavigate } from 'react-router-dom';
 import { FaRegUser } from "react-icons/fa";
 import Notify from '../Notify';
 import { LoaderContext } from '../Context';
+import { routes } from '../constant';
+import { useSelector } from 'react-redux';
 
 export const DashboardHOC = (Component) => {
+  
   const NewComponent = () => {
+    const state = useSelector(state => state.user.data)
+  
+    const [filterData, setfilterData] = useState(state)
+    const [filterValue, setfilterValue] = useState('')
+
 
     const { setloader } = useContext(LoaderContext)
-    console.log(setloader);
 
-    const nvigate=useNavigate()
-    const logInOut = () =>{
+    const nvigate = useNavigate()
+    const logInOut = () => {
       setloader(true)
       Notify("warning", `You r LoginOut`)
       sessionStorage.clear()
       nvigate('/login')
       setloader(false)
+    }
+
+    const handalChange = (e) => {
+      let inputvalue = e.target.value
+      setfilterValue(inputvalue)
+      let filterProperty = state?.map((x,i)=>console.log(x.firstName))
+      const filteredItem = filterProperty.filter((x) => {
+        return x.toLowerCase().includes(inputvalue.toLowerCase())
+    });
+    console.log(filteredItem);
+    setfilterData(filteredItem)
     }
     return <>
       <Container>
@@ -36,11 +54,11 @@ export const DashboardHOC = (Component) => {
               </div>
               <hr />
               <div className="menus">
-                <NavLink to='/dashboard'><div><IoHomeOutline /></div></NavLink>
-                <NavLink to='/tablebooking'><div><MdOutlineTableRestaurant /></div></NavLink>
-                <NavLink to='/menus'><div><MdRestaurantMenu /></div></NavLink>
-                <NavLink to='/contact'><div><MdOutlineConnectWithoutContact /></div></NavLink>
-                <NavLink to='/user'><div><FaRegUser /></div></NavLink>
+                <NavLink to={routes.dashboard}><div><IoHomeOutline /></div></NavLink>
+                <NavLink to={routes.tablebook}><div><MdOutlineTableRestaurant /></div></NavLink>
+                <NavLink to={routes.menus}><div><MdRestaurantMenu /></div></NavLink>
+                <NavLink to={routes.contact}><div><MdOutlineConnectWithoutContact /></div></NavLink>
+                <NavLink to={routes.user}><div><FaRegUser /></div></NavLink>
                 <div onClick={logInOut}>
                   <RiLogoutCircleRLine />
                 </div>
@@ -49,7 +67,7 @@ export const DashboardHOC = (Component) => {
             <div className="header">
               <div className="header-inner">
                 <div className="header-search">
-                  <input type="text" placeholder='Search.....' />
+                  <input type="text" placeholder='Search.....' onChange={handalChange} value={filterValue}/>
                   <button><IoSearchOutline /></button>
                 </div>
                 <div className="header-btn">

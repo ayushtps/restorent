@@ -2,13 +2,14 @@ import React, { useState } from 'react'
 import { DashboardHOC } from '../component/DashboardHOC'
 import '../asset/style/pages/AllUser.css'
 import { useDispatch, useSelector } from 'react-redux'
-import { deleteApi, editDataUser } from '../redux/action/action'
+import { deleteApiData, editApiData } from '../redux/slice/UserSlice'
 function AllUser() {
     const [popUpShow, setpopUpShow] = useState(false)
     let [editObj, seteditObj] = useState({})
 
 
-    const state = useSelector(state => state.api)
+    const state = useSelector(state => state.user.data)
+    
     const dispatch = useDispatch()
 
     const onEnter = (e) => {
@@ -47,7 +48,7 @@ function AllUser() {
     }
 
     const submitData = () => {
-        dispatch(editDataUser(registerForm, editObj))
+        dispatch(editApiData({editObj,registerForm}))
         document.querySelector('form').reset();
         setregisterForm({
             firstName: "",
@@ -61,7 +62,7 @@ function AllUser() {
     }
 
     const deleteData = (id) => {
-        dispatch(deleteApi(id))
+        dispatch(deleteApiData(id))
     }
 
     return (

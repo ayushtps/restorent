@@ -18,15 +18,15 @@ function TableBooking() {
             <div className="input-group">
               <input type="email" placeholder='Email' />
             </div>
-            <div className="input-group" style={{display:'flex'}}>
-              <input type="date" placeholder='date' style={{marginRight:'7px'}} />
+            <div className="input-group" style={{ display: 'flex' }}>
+              <input type="date" placeholder='date' style={{ marginRight: '7px' }} />
               <input type="time" placeholder='time' />
             </div>
             <div className="input-group">
               <input type="number" placeholder='Person' />
             </div>
             <div className="input-group">
-              <textarea name="" id=""  placeholder='Your Message...'></textarea>
+              <textarea name="" id="" placeholder='Your Message...'></textarea>
             </div>
             <div className="input-group">
               <button>Send Message</button>
@@ -34,7 +34,7 @@ function TableBooking() {
           </form>
         </div>
       </div>
-    </div>
+    </div>  
   )
 }
 

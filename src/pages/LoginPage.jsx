@@ -9,10 +9,6 @@ import { LoginUser, RegisterUser } from '../redux/slice/LoginSlice'
 // import { LoginUser, RegisterUser } from '../redux/action/action'
 
 function LoginPage() {
-
-    const state = useSelector(state => state.login.data)
-    console.log(state);
-
     const dispatch = useDispatch()
 
     const { setloader } = useContext(LoaderContext)
